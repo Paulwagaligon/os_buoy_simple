@@ -12,16 +12,17 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
+id_number = 0
 
-
-@app.get("/pamguard/")
+@app.get("/raw_data/")
 def sendPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資料
-    if time_stamp:
-        fs = 51200
-        t = np.array(range(0, fs))/fs
-        data = np.sin(2*np.pi*1000*t)*1
-        returnValue = [{'id': int, 'time_stamp': datetime.now(timezone.utc), 'fs': 51200.0, 'name': 'test_data', 'data': data}]
-        return returnValue
+    global id_number
+    fs = 51200
+    id_number += 1
+    t = np.array(range(0, fs))/fs
+    data = np.sin(2*np.pi*1000*t)*1
+    returnValue = [{'id': id_number, 'time_stamp': datetime.now(timezone.utc), 'fs': fs, 'name': 'test_data', 'data': data}]
+    return returnValue
 
 
 if __name__ == "__main__":
