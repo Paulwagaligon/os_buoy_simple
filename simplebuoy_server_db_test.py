@@ -25,7 +25,7 @@ async def getPamGuardData():#存進來的資料
     id_number += 1
     t = np.array(range(0, fs))/fs
     data = np.sin(2*np.pi*1000*t)*1
-    returnValue = {'id': id_number, 'time_stamp':datetime.now(), 'Fs': int(51200), 'name':'test_data'}
+    returnValue = {'id': id_number, 'time_stamp':datetime.now(), 'Fs': int(51200), 'name':'test_data', 'data':list(data)}
     print(id_number)
     return returnValue
 
