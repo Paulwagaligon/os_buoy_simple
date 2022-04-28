@@ -3,6 +3,8 @@ Arthur: PK-Chen
 Purpuse: buoy server simple version
 Date: 2022/4/27
 """
+import json
+from time import time
 import uvicorn
 from fastapi import FastAPI
 import logging
@@ -13,15 +15,18 @@ from typing import Optional
 logger = logging.getLogger(__name__)
 app = FastAPI()
 id_number = 0
+url = "127.0.0.1"
+
 
 @app.get("/raw_data/")
-def sendPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資料
+async def getPamGuardData():#存進來的資料
     global id_number
     fs = 51200
     id_number += 1
     t = np.array(range(0, fs))/fs
     data = np.sin(2*np.pi*1000*t)*1
-    returnValue = [{'id': id_number, 'time_stamp': datetime.now(timezone.utc), 'fs': fs, 'name': 'test_data', 'data': data}]
+    returnValue = {'id': id_number, 'time_stamp':datetime.now(), 'Fs': int(51200), 'name':'test_data'}
+    print(id_number)
     return returnValue
 
 
