@@ -20,7 +20,9 @@ uvicorn web: https://www.uvicorn.org/
 
 ## Run and test
 - First Terminal
+
     $ uvicorn simplebuoy_server_db_test:app 
 
 - Second Terminal
+
     $ python simplebuoy_client.py (example)
