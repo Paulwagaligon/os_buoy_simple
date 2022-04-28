@@ -3,12 +3,10 @@ Arthur: PK-Chen
 Purpuse: buoy server simple version
 Date: 2022/4/27
 """
-import json
-from time import time
 import uvicorn
 from fastapi import FastAPI
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 import numpy as np
 from typing import Optional
 
@@ -19,7 +17,7 @@ url = "127.0.0.1"
 
 
 @app.get("/raw_data/")
-async def getPamGuardData(time_stamp: Optional[datetime]):#存進來的資料
+async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資料
     global id_number
     fs = 51200
     id_number += 1
