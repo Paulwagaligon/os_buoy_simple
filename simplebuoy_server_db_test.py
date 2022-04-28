@@ -19,13 +19,13 @@ url = "127.0.0.1"
 
 
 @app.get("/raw_data/")
-async def getPamGuardData():#存進來的資料
+async def getPamGuardData(time_stamp: Optional[datetime]):#存進來的資料
     global id_number
     fs = 51200
     id_number += 1
     t = np.array(range(0, fs))/fs
     data = np.sin(2*np.pi*1000*t)*1
-    returnValue = {'id': id_number, 'time_stamp':datetime.now(), 'Fs': int(51200), 'name':'test_data', 'data':list(data)}
+    returnValue = {'id': id_number, 'time_stamp':time_stamp, 'Fs': int(51200), 'name':'test_data', 'data':list(data)}
     print(id_number)
     return returnValue
 
