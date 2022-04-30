@@ -6,11 +6,11 @@
 ## Install package
 Window  
 
-    $ pip install numpy fastapi uvicorn[standard]
+    $ pip install numpy fastapi uvicorn[standard] requests
 
 Mac OS
 
-    $ pip install numpy fastapi uvicorn
+    $ pip install numpy fastapi uvicorn requests
 
 
 FastAPI and uvicorn are used as the frame  
@@ -21,7 +21,7 @@ uvicorn web: https://www.uvicorn.org/
 ## Run and test
 - First Terminal
 
-    $ uvicorn simplebuoy_server_db_test:app 
+    $ python simplebuoy_server_db_test.py 
 
 - Second Terminal
 
