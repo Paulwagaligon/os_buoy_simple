@@ -9,6 +9,7 @@ import logging
 from datetime import datetime
 import numpy as np
 from typing import Optional
+from datetime import datetime, timezone
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
@@ -22,8 +23,10 @@ async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資�
     fs = 51200
     id_number += 1
     t = np.array(range(0, fs))/fs
-    data = np.sin(2*np.pi*1000*t)*1
-    returnValue = {'id': id_number, 'time_stamp':time_stamp, 'Fs': int(51200), 'name':'test_data', 'data':list(data)}
+    freq = 1000
+    data = np.sin(2*np.pi*freq*t)*1
+    return_time_stamp = {'time_stamp':datetime.now(timezone.utc).isoformat("T", "milliseconds")}
+    returnValue = {'id': id_number, 'time_stamp':return_time_stamp, 'fs': fs, 'name':'test_data', 'data':data.tolist()}
     print(id_number)
     return returnValue
 
