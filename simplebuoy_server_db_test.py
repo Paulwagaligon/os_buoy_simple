@@ -29,7 +29,7 @@ async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資�
     return_time_stamp = datetime.now(timezone.utc).isoformat("T", "milliseconds")
     returnValue = {'id': id_number, 'time_stamp':return_time_stamp, 'fs': fs, 'name':'test_data', 'data':data.tolist()}
     print(id_number)
-    return returnValue
+    return [returnValue]
 
 
 if __name__ == "__main__":
