@@ -28,7 +28,7 @@ async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資�
     amp = 1
     data = np.sin(2*np.pi*freq*t)*amp
 
-    record = int(random.uniform(1, 4))
+    record = int(random.uniform(0, 4))
     print("Amount of return values: ", record)
     if record == 0:
         return [{'record':record}]
