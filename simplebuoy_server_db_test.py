@@ -19,7 +19,7 @@ url = "127.0.0.1"
 return_time_stamp = datetime.now(timezone.utc)
 
 
-@app.get("/connect/")
+@app.get("/connect_pamguard/")
 async def getConnection():
     fs = 51200
     return {'status':'success', 'fs':fs}
