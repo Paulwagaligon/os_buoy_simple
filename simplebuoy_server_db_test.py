@@ -19,6 +19,11 @@ url = "127.0.0.1"
 return_time_stamp = datetime.now(timezone.utc)
 
 
+@app.get("/connect/")
+async def getConnection():
+    fs = 51200
+    return {'status':'success', 'fs':fs}
+
 @app.get("/raw_data/")
 async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資料
     global id_number, return_time_stamp
@@ -39,8 +44,9 @@ async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資�
             id_number += 1
             returnValue = {'id': id_number, 'time_stamp':return_time_stamp.isoformat("T", "milliseconds"), 'fs': fs, 'name':'test_data', 'data':data.tolist()}
             returnList.append(returnValue)
+        print("last time stamp: ", return_time_stamp.isoformat("T", "milliseconds"))
         return returnList
 
 
 if __name__ == "__main__":
-    uvicorn.run(app=app, host="127.0.0.1", port=8000, log_level="info")
+    uvicorn.run(app=app, host=url, port=8000, log_level="info")
