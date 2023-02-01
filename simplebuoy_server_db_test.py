@@ -28,7 +28,6 @@ class RawData(BaseModel):
 
 @app.get("/connect_pamguard/")
 async def getConnection():#連接測試
-    #fs = 51200
     return {'status':'success','fs':fs}
 
 
@@ -36,12 +35,6 @@ async def getConnection():#連接測試
 async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資料
     print("[RECEIVE] time_stamp : ", time_stamp)
     global id_number, return_time_stamp, wav_file_i
-
-    #fs = 51200
-    #t = np.array(range(0, fs))/fs
-    #freq = 10
-    #amp = 0.5
-    #data = np.sin(2*np.pi*freq*t)*amp
 
     record = int(random.uniform(0, 4))
     record = 4
@@ -67,7 +60,11 @@ async def getPamGuardData(time_stamp: Optional[datetime]=None):#存進來的資�
        
         return returnList
         
-
+@app.get("/get_buoy_status/")
+async def sendBuoyStatus():
+    lat = 23.1+random.uniform(-0.1, 0.1)
+    lon = 122.4+random.uniform(-0.1, 0.1)
+    return {'temp':23, 'humi':43, 'volt':12, 'lat':lat, 'lon':lon}
 
 if __name__ == "__main__":
     wav_file = "HY_20210825_123724.wav"
